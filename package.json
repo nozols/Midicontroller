@@ -1,0 +1,31 @@
+{
+  "name": "MidiController",
+  "version": "1.0.0",
+  "description": "A electron based piece of software for controlling an Arduino based midicontroller",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nozols/Midicontroller.git"
+  },
+  "keywords": [
+    "Electron",
+    "Arduino",
+    "Serial",
+    "Communication"
+  ],
+  "author": "Niels de Boer",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-prebuilt-compile": "^1.6.11",
+    "electron-rebuild": "^1.4.0"
+  },
+  "dependencies": {
+    "data-table": "^2.0.0",
+    "serialport": "^4.0.7"
+  }
+}

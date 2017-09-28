@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Midi Controller Software</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/material-kit.css">
+    <link rel="stylesheet" href="./sass/_app.scss">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapse-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">Midicontroller</a>
+        </div>
+        <div class="collapse navbar-collapse" id="collapse-nav">
+          <ul class="nav navbar-nav nav-buttons">
+            <li><a id="btn-page-control" href="#control" data-select="control">Control</a></li>
+            <li><a id="btn-page-banks" href="#banks" data-select="banks">Banks</a></li>
+            <li><a id="btn-page-words" href="#words" data-select="words">Words</a></li>
+            <li><a id="btn-page-settings" href="#settings" data-select="settings">Settings</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="text-menu-select">Select board</span> <b class="caret"></b></a>
+              <ul class="dropdown-menu" id="board-dropdown">
+                <li><a href="#" id="board-disconnect">Disconnect</a></li>
+                <li><a href="#" id="board-rescan">Rescan boards</a></li>
+                <li class="divider"></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="alert alert-hidden">
+      <div class="container-fluid">
+        <button class="close" type="button" data-dismiss="alert" aria-label="close"><span aria-hidden="true">X</span></button>
+        <b>Hello:</b> <span class="text"></span>
+      </div>
+    </div>
+    <div id="alert-container">
+
+    </div>
+    <div class="wrapper">
+      <div class="header-spacer"></div>
+      <div class="main main-raised">
+        <div class="container">
+          <div class="page" id="page-welcome">
+            <h3>Welcome!</h3>
+            <p>Please select your board in the top right corner to get started!</p>
+          </div>
+          <div class="page" id="page-downloading">
+            <h3>Downloading board data...</h3>
+            <span class="spinner"></span>
+          </div>
+          <div class="page" id="page-control">
+            <div id="show-data">
+              <div id="bank">
+                Bank: <span>1</span>
+              </div>
+              <div id="patch">
+                Patch: <span>1</span>
+              </div>
+              <div id="bpm">
+                Bpm: <span>120</span>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-success btn-lg btn-bank" id="btn-bank-up">Bank Up</button>
+              <button class="btn btn-success btn-lg btn-bank" id="btn-bank-down">Bank Down</button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-success btn-lg btn-patch" id="btn-patch-1" data-patch="0">1</button>
+              <button class="btn btn-success btn-lg btn-patch" id="btn-patch-2" data-patch="1">2</button>
+              <button class="btn btn-success btn-lg btn-patch" id="btn-patch-3" data-patch="2">3</button>
+              <button class="btn btn-success btn-lg btn-patch" id="btn-patch-4" data-patch="3">4</button>
+              <button class="btn btn-success btn-lg btn-patch" id="btn-patch-5" data-patch="4">5</button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-warning btn-lg" id="btn-tune">Tune</button>
+            </div>
+            <div class="form-group label-floating">
+              <label class="control-label">Set bank</label>
+              <input type="number" class="form-control" id="input-set-bank" min="0" max="31">
+            </div>
+            <div class="form-group label-floating">
+              <label class="control-label">Set bpm</label>
+              <input type="number" class="form-control" id="input-set-bpm" min="10" max="255">
+            </div>
+          </div>
+          <div class="page" id="page-banks">
+            <div class="page-buttons">
+              <div class="btn-group">
+                <button class="btn btn-success" id="btn-save">Save</button>
+                <button class="btn btn-success" id="btn-save-json">Save to pc</button>
+                <button class="btn btn-success" id="btn-save-json-all">Save all to pc</button>
+                <button class="btn btn-warning" id="btn-load">Load</button>
+                <button class="btn btn-warning" id="btn-load-all">Load all</button>
+              </div>
+            </div>
+            <div class="bank">
+              <h3>Bank options</h3>
+              <div class="form-group label-floating">
+                <label class="control-label">Bank number</label>
+                <select id="input-bank" class="form-control"></select>
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Bank name</label>
+                <input type="text" class="form-control" id="input-bank-name" minlength="1" maxlength="16">
+              </div>
+            </div>
+            <div class="patch" data-number="1">
+              <h5>Patch: 1</h5>
+              <div class="form-group label-floating">
+                <label class="control-label">Name</label>
+                <select class="form-control input-name"></select>
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Bpm</label>
+                <input type="number" class="form-control input-bpm" min="0" max="255" step="1">
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Midi Channel</label>
+                <input type="number" class="form-control input-midi-channel" min="1" max="16" step="1">
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Midi Status</label>
+                <select class="form-control input-midi-status">
+                  <option value="note-off">Note Off Event</option>
+                  <option value="note-on">Note On Event</option>
+                  <option value="aftertouch">Aftertouch</option>
+                  <option value="control-change">Control Change</option>
+                  <option value="program-change">Program Change</option>
+                  <option value="channel-pressure">Channel Pressure</option>
+                  <option value="pitch-bend">Pitch Bend</option>
+                </select>
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Midi Parameter One</label>
+                <input type="number" class="form-control input-midi-parameter-1" min="0" max="255" step="1">
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Midi Parameter Two</label>
+                <input type="number" class="form-control input-midi-parameter-2" min="0" max="255" step="1">
+              </div>
+            </div>
+          </div>
+          <div class="page" id="page-words">
+            <h3>Words</h3>
+            <div class="page-buttons">
+              <div class="btn-group">
+                <button class="btn btn-success" id="btn-save">Save</button>
+                <button class="btn btn-success" id="btn-save-json">Save to pc</button>
+                <button class="btn btn-warning" id="btn-load">Load</button>
+              </div>
+            </div>
+            <div class="word-group-left">
+              <div class="form-group label-floating">
+                <label class="control-label">Word 1</label>
+                <input type="text" class="form-control input-word" maxlength="16" data-word="1">
+              </div>
+            </div>
+            <div class="word-group-right">
+
+            </div>
+          </div>
+          <div class="page page-visible" id="page-settings">
+            <h3>Board settings</h3>
+            <div id="board-console">
+              <div class="console-lines">
+                <span class="console-line">This is a console line</span>
+              </div>
+              <div class="console-input">
+                <input type="text" id="console-input-field">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    window.$ = window.jQuery = require('./js/jquery.min.js');
+    require("./js/bootstrap.min.js");
+    require("./js/material.min.js");
+    require("./js/material-kit.js");
+    import Main from "./js/program/Main.js";
+    var wordEl = $("#page-words .word-group-left > div").clone();
+
+    for(var i = 2; i <= 32; i++){
+      wordEl.find('.control-label').html("Word " + i);
+      wordEl.find('.input-word').attr('data-word', i);
+      if(i <= 16){
+        wordEl.appendTo('.word-group-left');
+      }else{
+        wordEl.appendTo('.word-group-right');
+      }
+      wordEl = wordEl.clone();
+    }
+
+
+    for(var i = 0; i < 32; i++){
+      $("#page-banks #input-bank").append('<option value="' + i + '">' + i + '</option>');
+    }
+
+    var patchEl = $('#page-banks .patch').clone();
+
+    for(var i = 2; i <= 5; i++){
+      patchEl.find('h5').html("Patch: " + i);
+      patchEl.attr('data-number', i);
+      patchEl.appendTo('#page-banks');
+      patchEl = patchEl.clone();
+    }
+    var c = new Main();
+    /*
+    $(".nav-buttons li a").click(function(){
+      if(c.activeBoard == null){
+        c.showError('warning', 'Please connect to a board first!');
+        return;
+      }
+      $(".nav-buttons li").removeClass("active");
+      $(".page").removeClass("page-visible");
+      $($(this).attr('href')).addClass('page-visible');
+      $(this).parent().addClass("active");
+    });*/
+
+  </script>
+</html>
