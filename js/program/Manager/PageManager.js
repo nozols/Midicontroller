@@ -1,4 +1,5 @@
 import Html from './../Html/Html.js';
+import TextNode from './../Html/TextNode.js';
 import PageControlHtml from './../Html/PageControlHtml.js';
 import PageBanksHtml from './../Html/PageBanksHtml.js';
 import PageWordsHtml from './../Html/PageWordsHtml.js';
@@ -10,6 +11,7 @@ export default class PageManager{
     this.main = main;
     this.scanSpinner = null;
     this.boardDropdown = new Html(document.getElementById('board-dropdown'));
+    this.alertContainer = new Html(document.getElementById('alert-container'));
 
     this.pages = {};
     this.pages.welcome = new Html(document.getElementById('page-welcome'));
@@ -45,6 +47,29 @@ export default class PageManager{
 
     this.main.eventManager.addEventListener('download-ready', function(){
       self.selectPage('control');
+    });
+
+    this.main.eventManager.addEventListener('show-popup', function(e){
+      var alert = (new Html('div'))
+        .setClass('alert alert-'+e.messageType);
+      var container = (new Html('div'))
+        .setClass('container-fluid');
+      var button = (new Html('button'))
+        .setClass('close')
+        .setTag('type', 'button')
+        .setTag('data-dismiss', 'alert')
+        .setTag('aria-label', 'close')
+        .onClick(function(){
+          alert.remove();
+        });
+      var span = (new Html('span'))
+        .setTag('aria-hidden', true)
+        .addChild(new TextNode('X'));
+      alert.addChild(container);
+      container.addChild(button);
+      button.addChild(span);
+      container.addChild(new TextNode(e.message));
+      self.alertContainer.addChild(alert);
     });
   }
 

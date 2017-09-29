@@ -115,7 +115,7 @@ export default class Html{
    * getChild - get a child of this element
    *
    * @param  {string} selector
-   * @return {type}          description   
+   * @return {type}          description
    */
   getChild(selector){
     return this.node.querySelector(selector);
@@ -162,7 +162,7 @@ export default class Html{
    * @return {Html}    instance
    */
   setClass(cl){
-    this.node.class = cl;
+    this.node.className = cl;
     return this;
   }
 
