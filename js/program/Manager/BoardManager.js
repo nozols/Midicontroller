@@ -14,7 +14,7 @@ export default class BoardManager{
     var self = this;
     this.main = main;
     this.activeBoard = null;
-    this.serialParser = new Util().parser;
+    this.serialParser = this.main.util.parser;
 
     this.boardDropdown = new Html(document.getElementById('board-dropdown'));
     this.buttonDisconnect = new Html(document.getElementById('board-disconnect'));
@@ -73,7 +73,6 @@ export default class BoardManager{
     li.addChild(a);
     a.addChild(t);
     a.onClick(function(e){
-      console.log("CLICK");
       self.main.eventManager.triggerEvent(new BoardSelectEvent(new Html(e.target)));
     });
     this.boardButtons.push(li);

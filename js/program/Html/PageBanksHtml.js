@@ -8,18 +8,18 @@ export default class PageBanksHtml extends Html{
     this.main = main;
 
     this.buttons = {};
-    this.buttons.save = (new Html(document.getElementById('btn-save')));
-    this.buttons.saveJson = (new Html(document.getElementById('btn-save-json')));
-    this.buttons.saveJsonAll = (new Html(document.getElementById('btn-save-json-all')));
-    this.buttons.load = (new Html(document.getElementById('btn-load')));
-    this.buttons.loadAll = (new Html(document.getElementById('btn-load-all')));
+    this.buttons.save = (new Html(this.node.querySelector('#btn-save')));
+    this.buttons.saveJson = (new Html(this.node.querySelector('#btn-save-json')));
+    this.buttons.saveJsonAll = (new Html(this.node.querySelector('#btn-save-json-all')));
+    this.buttons.load = (new Html(this.node.querySelector('#btn-load')));
+    this.buttons.loadAll = (new Html(this.node.querySelector('#btn-load-all')));
 
     this.inputs = {};
-    this.inputs.bankNumber = (new Html(document.getElementById('input-bank')))
+    this.inputs.bankNumber = (new Html(this.node.querySelector('#input-bank')))
       .addEventListener('change', function(e){
         self.setContent(self.main.dataManager.banks[e.target.value]);
       });
-    this.inputs.bankName = (new Html(document.getElementById('input-bank-name')));
+    this.inputs.bankName = (new Html(this.node.querySelector('#input-bank-name')));
     this.inputs.patches = [];
     var p = this.node.querySelectorAll('.patch');
     for(var i = 0; i < p.length; i++){
