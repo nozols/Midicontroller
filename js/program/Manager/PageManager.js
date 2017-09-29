@@ -39,8 +39,18 @@ export default class PageManager{
       self.hideBoardScanSpinner();
     });
 
+    this.main.eventManager.addEventListener('board-ready', function(){
+      self.selectPage('downloading');
+    });
+
+    this.main.eventManager.addEventListener('download-ready', function(){
+      self.selectPage('control');
+    });
   }
 
+  /**
+   * showBoardScanSpinner - show the spinner in the board select menu
+   */
   showBoardScanSpinner(){
     this.hideBoardScanSpinner();
     this.scanSpinner = new Html('li');
@@ -51,6 +61,9 @@ export default class PageManager{
     this.boardDropdown.addChild(this.scanSpinner);
   }
 
+  /**
+   * hideBoardScanSpinner - hide the spinner in the board select menu
+   */
   hideBoardScanSpinner(){
     if(this.scanSpinner != null){
       this.scanSpinner.remove();

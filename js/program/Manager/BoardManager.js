@@ -91,7 +91,7 @@ export default class BoardManager{
   }
 
   /**
-   * rescanBoards - disconnect from the current board and scan for new ones  
+   * rescanBoards - disconnect from the current board and scan for new ones
    */
   rescanBoards(){
     for(var i = 0; i < this.boardButtons.length; i++){
@@ -112,10 +112,12 @@ export default class BoardManager{
     SerialPort.list(function(err, ports){
       if(err){
         self.main.eventManager.triggerEvent(new ShowPopupEvent('error', err));
+        self.main.eventManager.triggerEvent(new Event('scan-boards-end'));
         return;
       }
       if(ports.length == 0){
         self.main.eventManager.triggerEvent(new ShowPopupEvent('warning', 'No boards were found'));
+        self.main.eventManager.triggerEvent(new Event('scan-boards-end'));
         return;
       }
 

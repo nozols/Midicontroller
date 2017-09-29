@@ -52,7 +52,7 @@
       <div class="header-spacer"></div>
       <div class="main main-raised">
         <div class="container">
-          <div class="page" id="page-welcome">
+          <div class="page page-visible" id="page-welcome">
             <h3>Welcome!</h3>
             <p>Please select your board in the top right corner to get started!</p>
           </div>
@@ -171,7 +171,7 @@
 
             </div>
           </div>
-          <div class="page page-visible" id="page-settings">
+          <div class="page" id="page-settings">
             <h3>Board settings</h3>
             <div id="board-console">
               <div class="console-lines">
@@ -194,8 +194,9 @@
     require("./js/material.min.js");
     require("./js/material-kit.js");
     import Main from "./js/program/Main.js";
-    var wordEl = $("#page-words .word-group-left > div").clone();
 
+    // clone the word inputs so there are 32 available
+    var wordEl = $("#page-words .word-group-left > div").clone();
     for(var i = 2; i <= 32; i++){
       wordEl.find('.control-label').html("Word " + i);
       wordEl.find('.input-word').attr('data-word', i);
@@ -207,31 +208,22 @@
       wordEl = wordEl.clone();
     }
 
-
+    // add the bank selector
     for(var i = 0; i < 32; i++){
       $("#page-banks #input-bank").append('<option value="' + i + '">' + i + '</option>');
     }
 
+    //clone the patch four times
     var patchEl = $('#page-banks .patch').clone();
-
     for(var i = 2; i <= 5; i++){
       patchEl.find('h5').html("Patch: " + i);
       patchEl.attr('data-number', i);
       patchEl.appendTo('#page-banks');
       patchEl = patchEl.clone();
     }
-    var c = new Main();
-    /*
-    $(".nav-buttons li a").click(function(){
-      if(c.activeBoard == null){
-        c.showError('warning', 'Please connect to a board first!');
-        return;
-      }
-      $(".nav-buttons li").removeClass("active");
-      $(".page").removeClass("page-visible");
-      $($(this).attr('href')).addClass('page-visible');
-      $(this).parent().addClass("active");
-    });*/
+
+    // start the main engine
+    new Main();
 
   </script>
 </html>

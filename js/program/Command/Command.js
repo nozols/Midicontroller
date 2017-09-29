@@ -22,12 +22,18 @@ export default class Command{
     }
   }
 
+  /**
+   * fromCommandLine - converts a string entered in the commandline to a valid and sendable command
+   *
+   * @param  {String} string The string the user entered
+   * @return {type}        description
+   */
   fromCommandLine(string){
-
+    // Not yet implemented
   }
 
   /**
-   * wordMatch - description  
+   * wordMatch - description
    *
    * @param  {type} word description
    * @return {type}      description
@@ -46,7 +52,7 @@ export default class Command{
   }
 
   /**
-   * getCommand - get the command
+   * getCommand - get the command character
    *
    * @return {string}  command to send
    */

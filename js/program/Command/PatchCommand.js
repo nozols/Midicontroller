@@ -1,4 +1,4 @@
-import Command from  './Command.js';
+import Command from './Command.js';
 
 export default class PatchCommand extends Command{
   constructor(patch){

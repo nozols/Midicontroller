@@ -18,11 +18,23 @@ export default class Html{
     this.onClickCallback = [];
   }
 
+  /**
+   * addEventListener - add an event
+   *
+   * @param  {String} name     event type
+   * @param  {function} callback event callback
+   * @return {Html}          instance
+   */
   addEventListener(name, callback){
     this.node.addEventListener(name, callback);
     return this;
   }
 
+  /**
+   * getParent
+   *
+   * @return {Html}  get the parent of this element
+   */
   getParent(){
     return new Html(this.node.parentNode);
   }
@@ -99,6 +111,12 @@ export default class Html{
     return this;
   }
 
+  /**
+   * getChild - get a child of this element
+   *
+   * @param  {string} selector
+   * @return {type}          description   
+   */
   getChild(selector){
     return this.node.querySelector(selector);
   }
