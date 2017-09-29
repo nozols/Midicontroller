@@ -8,11 +8,26 @@ export default class PageBanksHtml extends Html{
     this.main = main;
 
     this.buttons = {};
-    this.buttons.save = (new Html(this.node.querySelector('#btn-save')));
-    this.buttons.saveJson = (new Html(this.node.querySelector('#btn-save-json')));
-    this.buttons.saveJsonAll = (new Html(this.node.querySelector('#btn-save-json-all')));
-    this.buttons.load = (new Html(this.node.querySelector('#btn-load')));
-    this.buttons.loadAll = (new Html(this.node.querySelector('#btn-load-all')));
+    this.buttons.save = (new Html(this.node.querySelector('#btn-save')))
+      .onClick(function(){
+
+      });
+    this.buttons.saveJson = (new Html(this.node.querySelector('#btn-save-json')))
+      .onClick(function(){
+        self.main.localManager.saveCurrentBank();
+      });
+    this.buttons.saveJsonAll = (new Html(this.node.querySelector('#btn-save-json-all')))
+      .onClick(function(){
+        self.main.localManager.saveAllBanks();
+      });
+    this.buttons.load = (new Html(this.node.querySelector('#btn-load')))
+      .onClick(function(){
+        self.main.localManager.loadCurrentBank();
+      });
+    this.buttons.loadAll = (new Html(this.node.querySelector('#btn-load-all')))
+      .onClick(function(){
+        self.main.localManager.loadAllBanks();
+      });
 
     this.inputs = {};
     this.inputs.bankNumber = (new Html(this.node.querySelector('#input-bank')))
@@ -44,6 +59,23 @@ export default class PageBanksHtml extends Html{
         midiVelocity: data.midi[i][2]
       });
     }
+  }
+
+  getCurrentContent(){
+    var result = {
+      bankName: this.inputs.bankName.getValue(),
+      bankNumber: this.inputs.bankNumber.getValue(),
+      patches: []
+    }
+
+    for(var i = 0; i < 5; i++){
+      result.patches.push(this.inputs.patches[i].getContent());
+    }
+    return result;
+  }
+
+  getAllContent(){
+
   }
 
   setWord(id, word){

@@ -5,6 +5,13 @@ import PageBanksHtml from './../Html/PageBanksHtml.js';
 import PageWordsHtml from './../Html/PageWordsHtml.js';
 import ShowPopupEvent from './../Events/ShowPopupEvent.js';
 
+
+/**
+ * Handles all the html stuff going on on the pages
+ *   - button clicks
+ *   - updating inputs
+ *   - validating inputs
+ */
 export default class PageManager{
   constructor(main){
     var self = this;

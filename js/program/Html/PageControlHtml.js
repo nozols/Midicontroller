@@ -32,7 +32,7 @@ export default class PageControlHtml extends Html{
     this.buttons.patchFive = (new Html(this.node.querySelector('#btn-patch-5'))).onClick(function(){
       self.main.eventManager.triggerEvent(new SendCommandEvent(new PatchCommand(4)));
     });
-    this.buttons.tune = (new Html(this.node.querySelector('btn-tune'))).onClick(function(){
+    this.buttons.tune = (new Html(this.node.querySelector('#btn-tune'))).onClick(function(){
       self.main.eventManager.triggerEvent(new SendCommandEvent(new Command('tune')));
     });
   }

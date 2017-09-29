@@ -1,6 +1,9 @@
 import Command from './../Command/Command.js';
 import SendCommandEvent from './../Events/SendCommandEvent.js';
 
+/**
+ * Handles all the incoming data from the midicontroller and stores it in arrays
+ */
 export default class DataManager{
   constructor(main){
     var self = this;

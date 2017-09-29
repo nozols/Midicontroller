@@ -9,6 +9,9 @@ import Board from './../Board.js';
 import Command from './../Command/Command.js';
 import Util from './../Util/Util.js';
 
+/**
+ * Handles board connecting, disconnecting and communication
+ */
 export default class BoardManager{
   constructor(main){
     var self = this;

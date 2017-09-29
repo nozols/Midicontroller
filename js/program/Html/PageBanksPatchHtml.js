@@ -21,6 +21,14 @@ export default class PageBanksPatchHtml extends Html{
     }
   }
 
+  getContent(){
+    var result = {};
+    for(var index in this.inputs){
+      result[index] = this.inputs[index].getValue();
+    }
+    return result;
+  }
+
   setWord(id, word){
     var element = this.inputs.name.getChild('option[value="' + id + '"]');
     if(element){

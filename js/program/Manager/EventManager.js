@@ -1,8 +1,11 @@
+/**
+ * Handles all the events that have nothing to do with the dom
+ */
 export default class EventManager{
   constructor(){
     this.events = [];
   }
-  
+
   /**
    * triggerEvent - trigger an event
    *
