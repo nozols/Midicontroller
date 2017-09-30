@@ -6,6 +6,15 @@ export default class PageWordsHtml extends Html{
     super(document.getElementById('page-words'));
     var self = this;
     this.main = main;
+    this.buttons = {}
+    this.buttons.saveLocal = (new Html(this.node.querySelector('#btn-save-json')))
+      .onClick(function(){
+        self.main.localManager.saveWords();
+      });
+    this.buttons.loadLocal = (new Html(this.node.querySelector('#btn-load')))
+      .onClick(function(){
+        self.main.localManager.loadWords();
+      });
     this.inputs = [];
 
     var w = this.node.querySelectorAll('.input-word');
@@ -18,5 +27,13 @@ export default class PageWordsHtml extends Html{
   setWord(id, word){
     this.inputs[id].setValue(word);
     this.inputs[id].getParent().removeClass('is-empty');
+  }
+
+  getWords(){
+    var result = {};
+    for(var i = 0; i < this.inputs.length; i++){
+      result[i] = this.inputs[i].getValue();
+    }
+    return result;
   }
 }

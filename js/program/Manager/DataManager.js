@@ -36,4 +36,16 @@ export default class DataManager{
   numberToWord(number){
     return this.words[number];
   }
+
+  wordsFromSaveFile(words){
+
+  }
+
+  banksFromSaveFile(banks){
+
+  }
+
+  bankFromSaveFile(bank){
+    
+  }
 }
