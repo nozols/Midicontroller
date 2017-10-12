@@ -48,7 +48,7 @@ export default class PageManager{
       self.hideBoardScanSpinner();
     });
 
-    this.main.eventManager.addEventListener('board-ready', function(){
+    this.main.eventManager.addEventListener('board-select', function(){
       self.selectPage('downloading');
     });
 
