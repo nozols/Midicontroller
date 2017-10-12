@@ -42,16 +42,26 @@ export default class PageBanksHtml extends Html{
     }
   }
 
+  /**
+   * getCurrentBank - get the current bank id
+   *
+   * @return {int}  bank id
+   */
   getCurrentBank(){
     return parseInt(this.inputs.bankNumber.getValue());
   }
 
+  /**
+   * setContent - set the content that is currently displayed
+   *
+   * @param  {object} data
+   */
   setContent(data){
     this.inputs.bankName.setValue(data.name.replace(String.fromCharCode(0), ""));
     this.inputs.bankName.getParent().removeClass('is-empty');
     for(var i = 0; i < 5; i++){
       this.inputs.patches[i].setContent({
-        name: data.names[i],
+        name: data.words[i],
         bpm: data.bpms[i],
         midiChannel: data.midi[i][0] & 15,
         midiStatus: this.main.util.midiCommandBytes[data.midi[i][0] >> 4],
@@ -61,10 +71,15 @@ export default class PageBanksHtml extends Html{
     }
   }
 
+  /**
+   * getCurrentContent - get the content that is currently displayed
+   *
+   * @return {object}  content
+   */
   getCurrentContent(){
     var result = {
       bankName: this.inputs.bankName.getValue(),
-      bankNumber: this.inputs.bankNumber.getValue(),
+      bankNumber: this.getCurrentBank(),
       patches: []
     }
 
@@ -78,6 +93,12 @@ export default class PageBanksHtml extends Html{
 
   }
 
+  /**
+   * setWord - set a word value in the dropdown lists
+   *
+   * @param  {int} id   word id
+   * @param  {string} word word
+   */
   setWord(id, word){
     for(var i = 0; i < 5; i++){
       this.inputs.patches[i].setWord(id, word);

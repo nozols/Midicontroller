@@ -24,13 +24,24 @@ export default class PageWordsHtml extends Html{
 
   }
 
+  /**
+   * setWord - set word value
+   *
+   * @param  {int} id   word id
+   * @param  {string} word word value
+   */
   setWord(id, word){
     this.inputs[id].setValue(word);
     this.inputs[id].getParent().removeClass('is-empty');
   }
 
+  /**
+   * getWords - get word values
+   *
+   * @return {array}  values   
+   */
   getWords(){
-    var result = {};
+    var result = [];
     for(var i = 0; i < this.inputs.length; i++){
       result[i] = this.inputs[i].getValue();
     }

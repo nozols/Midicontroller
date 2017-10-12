@@ -13,7 +13,8 @@ export default class Util{
       'setbank': 15,
       'sendbanks': 16,
       'senddata': 17,
-      'sendwords': 18
+      'sendwords': 18,
+      'ready': 19
     };
     this.midiCommandText = {
       'note-off': 8,

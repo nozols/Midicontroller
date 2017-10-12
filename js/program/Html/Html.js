@@ -203,9 +203,15 @@ export default class Html{
    * @return {type}  value
    */
   getValue(){
-    return this.node.value;
+    return this.node.type == 'number' ? parseInt(this.node.value) : this.node.value;
   }
 
+  /**
+   * setValue - set node value
+   *
+   * @param  {type} value   
+   * @return {Html}       instance
+   */
   setValue(value){
     this.node.value = value;
     return this;

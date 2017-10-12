@@ -11,7 +11,8 @@ export default class Command{
       'setbank': 15,
       'sendbanks': 16,
       'senddata': 17,
-      'sendwords': 18
+      'sendwords': 18,
+      'ready': 19
     };
 
     this.startCommandChar = String.fromCharCode(2);
