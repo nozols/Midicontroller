@@ -15,8 +15,8 @@ export default class Command{
       'ready': 19
     };
 
-    this.startCommandChar = String.fromCharCode(2);
-    this.endCommandChar = String.fromCharCode(3);
+    this.startCommandChar = String.fromCharCode(60);
+    this.endCommandChar = String.fromCharCode(62);
 
     if(!(command in this.commandBytes)){
       throw new Error("Registered an invalid command!! " + command);
@@ -61,12 +61,31 @@ export default class Command{
     return this.getCommandChar();
   }
 
+  byteArrayToString(arr){
+    var result = '';
+
+    for(var i = 0; i < arr.length; i++){
+      result += String.fromCharCode(arr[i]);
+    }
+
+    return result;
+  }
+
+  stringToLength(string){
+    var result = string;
+    for(var i = 0; i < 16 - string.length; i++){
+      result += ' ';
+    }
+
+    return result;
+  }
+
   /**
    * getSendString - get the final string which is send to the board
    *
    * @return {string}  the commandstring
    */
   getSendString(){
-    return this.startCommandChar + this.getCommand() + this.endCommandChar;
+    return this.getCommand() + this.startCommandChar + this.endCommandChar;
   }
 }
