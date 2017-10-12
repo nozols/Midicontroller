@@ -52,7 +52,9 @@ export default class PageBanksPatchHtml extends Html{
    */
   setWord(id, word){
     var element = this.inputs.name.getChild('option[value="' + id + '"]');
+
     if(element){
+      element = new Html(element);
       element.node.innerHTML = null;
       element.addChild(new TextNode(word));
     }else{

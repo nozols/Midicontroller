@@ -1,3 +1,4 @@
+import ReceiveCommand from './../Events/ReceiveCommand/ReceiveCommand.js';
 import SendBanksReceiveCommand from './../Events/ReceiveCommand/SendBanksReceiveCommand.js';
 import SendWordsReceiveCommand from './../Events/ReceiveCommand/SendWordsReceiveCommand.js';
 
@@ -57,6 +58,8 @@ export default class Util{
         return new SendBanksReceiveCommand(data);
       case 'sendwords':
         return new SendWordsReceiveCommand(data);
+      case 'ready':
+        return new ReceiveCommand('ready', data);
       default:
         return null;
     }

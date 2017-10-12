@@ -2,6 +2,7 @@ import SerialPort from 'serialport';
 import Command from './Command/Command.js';
 import Event from './Events/Event.js';
 import ReceiveCommandEvent from './Events/ReceiveCommandEvent.js';
+import ShowPopupEvent from './Events/ShowPopupEvent.js';
 import Util from './Util/Util.js';
 
 export default class Board{
@@ -17,6 +18,7 @@ export default class Board{
     this.commandBuffer = [];
     this.commandBufferChar = [];
     this.commandBufferStr = '';
+    this.isExpectedDisconnect = true;
 
     this.main.eventManager.addEventListener('send-command', function(event){
       self.sendCommand(event.command);
@@ -36,6 +38,9 @@ export default class Board{
     });
     this.connection.on('data', function(data){
       self.incoming(data);
+    });
+    this.connection.on('close', function(data){
+      self.postDisconnect(self.isExpectedDisconnect);
     });
   }
 
@@ -74,8 +79,20 @@ export default class Board{
    * disconnect - disconnect from the board
    */
   disconnect(){
-    this.main.eventManager.removeEventListener('BOARD-SEND-COMMAND');
+    this.isExpectedDisconnect = true;
     this.connection.close();
+  }
+
+  /**
+   * postDisconnect - called by the close event on port
+   *
+   * @param  {boolean} expected was it an expected disconnect?   
+   */
+  postDisconnect(expected){
+    this.main.eventManager.removeEventListener('BOARD-SEND-COMMAND');
     this.main.eventManager.triggerEvent(new Event('board-disconnect'));
+    if(!expected){
+      self.main.eventManager.triggerEvent(new ShowPopupEvent('warning', 'Board unexpectedly disconnected!'));
+    }
   }
 }

@@ -28,7 +28,7 @@ export default class DataManager{
     });
 
     this.main.eventManager.addEventListener('command-receive-ready', function(event){
-      self.pageManager.selectPage('control');
+      self.main.pageManager.selectPage('control');
     });
   }
 
