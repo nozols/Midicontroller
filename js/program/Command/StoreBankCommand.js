@@ -23,4 +23,8 @@ export default class StoreBankCommand extends Command{
     .concat(this.bpms)
     .concat(this.words);
   }
+
+  displayCommandline(){
+    return this.command + ' ' + this.index + ' ' + this.name + ' ' + this.midiBytes.join(' ') + ' ' + this.bpms.join(' ') + ' ' + this.words.join(' ');
+  }
 }

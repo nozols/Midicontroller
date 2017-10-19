@@ -34,6 +34,15 @@ export default class Command{
   }
 
   /**
+   * displayCommandline - get the string to display on the commandline if this command is send
+   *
+   * @return {string}
+   */
+  displayCommandline(){
+    return this.command;
+  }
+
+  /**
    * wordMatch - description
    *
    * @param  {type} word description
@@ -65,7 +74,7 @@ export default class Command{
    * stringToByteArray - convert a string to a bytearray
    *
    * @param  {string} str the string
-   * @return {array}     the byte array   
+   * @return {array}     the byte array
    */
   stringToByteArray(str){
     var result = [];

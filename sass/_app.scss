@@ -188,11 +188,16 @@
     font-family: 'Consolas', sans-serif;
     padding: 5px;
     margin-bottom: 5px;
-    height: 200px;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-x: auto;
 
     &::selection{
       color: black;
       background: rgb(192, 192, 192);
+    }
+    .console-line{
+      display: block;
     }
 
     .console-input{

@@ -12,4 +12,8 @@ export default class PatchCommand extends Command{
       this.patch
     ];
   }
+
+  displayCommandline(){
+    return this.command + ' ' + this.patch;
+  }
 }

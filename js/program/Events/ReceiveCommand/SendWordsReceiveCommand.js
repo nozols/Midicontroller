@@ -6,4 +6,8 @@ export default class SendWordsReceiveCommand extends ReceiveCommand{
     this.id = this.getByte(1);
     this.word = this.getString(2, data.length);
   }
+
+  displayCommandline(){
+    return this.type + ' ' + this.id + ' ' + this.word;
+  }
 }

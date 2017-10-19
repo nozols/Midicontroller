@@ -40,12 +40,16 @@ export default class ReceiveCommand{
   }
 
   /**
-   * getChar - description  
+   * getChar - description
    *
    * @param  {type} key description
    * @return {type}     description
    */
   getChar(key){
     return this.chars[key];
+  }
+
+  displayCommandline(){
+    return this.type;
   }
 }

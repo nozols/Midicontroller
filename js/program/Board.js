@@ -32,9 +32,7 @@ export default class Board{
     var self = this;
     this.connection = new SerialPort(this.comname, {
       baudrate: 9600,
-    //  parser: SerialPort.parsers.byteLength(1)
       parser: this.serialParser()
-      //parser: SerialPort.parsers.raw
     });
     this.connection.on('data', function(data){
       self.incoming(data);

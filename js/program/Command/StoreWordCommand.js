@@ -13,4 +13,8 @@ export default class StoreWordCommand extends Command{
       this.index,
     ].concat(this.stringToByteArray(this.value));
   }
+
+  displayCommandline(){
+    return this.command + ' ' + this.index + ' ' + this.value;
+  }
 }

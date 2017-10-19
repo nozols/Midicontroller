@@ -12,4 +12,8 @@ export default class BankCommand extends Command{
       this.upOrDown == 'up' ? 1 : 0
     ];
   }
+
+  displayCommandline(){
+    return this.command + ' ' + this.upOrDown;
+  }
 }

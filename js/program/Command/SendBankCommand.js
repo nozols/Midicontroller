@@ -12,4 +12,8 @@ export default class SendBankCommand extends Command{
       this.bank
     ];
   }
+
+  displayCommandline(){
+    return this.command + ' ' + this.bank;
+  }
 }
