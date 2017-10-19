@@ -86,7 +86,7 @@ export default class Board{
   /**
    * postDisconnect - called by the close event on port
    *
-   * @param  {boolean} expected was it an expected disconnect?   
+   * @param  {boolean} expected was it an expected disconnect?
    */
   postDisconnect(expected){
     this.main.eventManager.removeEventListener('BOARD-SEND-COMMAND');

@@ -1,5 +1,8 @@
 import Html from './Html.js'
 import PageBanksPatchHtml from './PageBanksPatchHtml.js';
+import ShowPopupEvent from './../Events/ShowPopupEvent.js';
+import SendCommandEvent from './../Events/SendCommandEvent';
+import StoreBankCommand from './../Command/StoreBankCommand.js';
 
 export default class PageBanksHtml extends Html{
   constructor(main){
@@ -10,7 +13,7 @@ export default class PageBanksHtml extends Html{
     this.buttons = {};
     this.buttons.save = (new Html(this.node.querySelector('#btn-save')))
       .onClick(function(){
-
+        self.storeToBoard();
       });
     this.buttons.saveJson = (new Html(this.node.querySelector('#btn-save-json')))
       .onClick(function(){
@@ -102,6 +105,50 @@ export default class PageBanksHtml extends Html{
   setWord(id, word){
     for(var i = 0; i < 5; i++){
       this.inputs.patches[i].setWord(id, word);
+    }
+  }
+
+  /**
+   * validate - check if all inputs have valid values
+   *
+   * @return {boolean}  description
+   */
+  validate(){
+    var result = true;
+    if(!/(^[a-z0-9A-Z\s:]{0,16}$)/g.test(this.inputs.bankName.getValue())){
+      this.inputs.bankName.getParent().addClass('has-error');
+      result = false;
+    }else{
+      this.inputs.bankName.getParent().removeClass('has-error');
+    }
+
+    for(var i = 0; i < this.inputs.patches.length; i++){
+      if(!this.inputs.patches[i].validate()){
+        result = false;
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * storeToBoard - store the current bank to the board
+   */
+  storeToBoard(){
+    if(this.validate()){
+      var bank = this.getCurrentContent();
+      var midi = [];
+      var bpms = [];
+      var words = [];
+      for(var i = 0; i < bank.patches.length; i++){
+        midi[i] = [bank.patches[i].midiChannel + (this.main.util.midiCommandText[bank.patches[i].midiStatus] << 4),
+            bank.patches[i].midiPitch || 0,
+            bank.patches[i].midiVelocity || 0
+          ];
+        bpms[i] = bank.patches[i].bpm || 0;
+        words[i] = bank.patches[i].name || 0;
+      }
+      this.main.eventManager.triggerEvent(new SendCommandEvent(new StoreBankCommand(bank.bankNumber, bank.bankName, midi, bpms, words)));
     }
   }
 }

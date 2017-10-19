@@ -64,4 +64,41 @@ export default class PageBanksPatchHtml extends Html{
       this.inputs.name.addChild(newElement);
     }
   }
+
+  /**
+   * validate - validate the inputs for this patch
+   *
+   * @return {boolean}
+   */
+  validate(){
+    var result = true;
+
+    for(var index in this.inputs){
+      if(index == 'name'){
+        if(!(this.inputs[index].getValue() < 32 && this.inputs[index].getValue() >= 0)){
+          result = false;
+          this.inputs[index].getParent().addClass('has-error');
+        }else{
+          this.inputs[index].getParent().removeClass('has-error');
+        }
+      }else if(index == 'midiStatus'){
+
+        if(this.inputs[index].getValue() == '' || this.inputs[index].getValue() == null){
+          result = false;
+          this.inputs[index].getParent().addClass('has-error');
+        }else{
+          this.inputs[index].getParent().removeClass('has-error');
+        }
+      }else{
+        if(!(this.inputs[index].getValue() < 256 && this.inputs[index].getValue() >= 0)){
+          result = false;
+          this.inputs[index].getParent().addClass('has-error');
+        }else{
+          this.inputs[index].getParent().removeClass('has-error');
+        }
+      }
+    }
+
+    return result;
+  }
 }

@@ -71,8 +71,16 @@ export default class Command{
     return result;
   }
 
-  stringToLength(string){
+
+  /**
+   * stringToChar - make a string 16 characters long, fill empty spots with whitespaces
+   *
+   * @param  {string} string
+   * @return {string}        new string
+   */
+  stringToChar(string){
     var result = string;
+
     for(var i = 0; i < 16 - string.length; i++){
       result += ' ';
     }
