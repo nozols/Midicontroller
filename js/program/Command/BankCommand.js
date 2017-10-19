@@ -7,6 +7,9 @@ export default class BankCommand extends Command{
   }
 
   getCommand(){
-    return this.getCommandChar() + (this.upOrDown == 'up' ? 1 : 0);
+    return [
+      this.getCommandByte(),
+      this.upOrDown == 'up' ? 1 : 0
+    ];
   }
 }

@@ -143,7 +143,7 @@ export default class BoardManager{
         serial.on('data', function(data){
           if(first){
             first = false;
-            serial.write(new Command('identify').getSendString());
+            serial.write(new Command('identify').getSendBytes());
           }else{
             if(data.string.indexOf('MidiController') == 0){
               canTimeout = false;
@@ -158,7 +158,7 @@ export default class BoardManager{
 
         setTimeout(function(){
           if(canTimeout){
-            self.main.eventManager.triggerEvent(new ShowPopupEvent('error', 'Board at comname "' + port.comName + '" timed out!'));
+            self.main.eventManager.triggerEvent(new ShowPopupEvent('warning', 'Board at comname "' + port.comName + '" timed out!'));
             serial.close();
             if(index == ports.length - 1){
               self.main.eventManager.triggerEvent(new Event('scan-boards-end'));

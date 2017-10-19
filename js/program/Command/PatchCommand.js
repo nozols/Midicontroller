@@ -7,6 +7,9 @@ export default class PatchCommand extends Command{
   }
 
   getCommand(){
-    return this.getCommandChar() + this.patch;
+    return [
+      this.getCommandByte(),
+      this.patch
+    ];
   }
 }

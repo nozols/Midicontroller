@@ -15,8 +15,8 @@ export default class Command{
       'ready': 19
     };
 
-    this.startCommandChar = String.fromCharCode(60);
-    this.endCommandChar = String.fromCharCode(62);
+    this.startByte = 60;
+    this.endByte = 62;
 
     if(!(command in this.commandBytes)){
       throw new Error("Registered an invalid command!! " + command);
@@ -48,29 +48,34 @@ export default class Command{
    *
    * @return {char}  char for code
    */
-  getCommandChar(){
-    return String.fromCharCode(this.commandBytes[this.command]);
+  getCommandByte(){
+    return this.commandBytes[this.command];
   }
 
   /**
-   * getCommand - get the command character
+   * getCommand - get the command
    *
-   * @return {string}  command to send
+   * @return {Array}  command to send
    */
   getCommand(){
-    return this.getCommandChar();
+    return [this.getCommandByte()];
   }
 
-  byteArrayToString(arr){
-    var result = '';
+  /**
+   * stringToByteArray - convert a string to a bytearray
+   *
+   * @param  {string} str the string
+   * @return {array}     the byte array   
+   */
+  stringToByteArray(str){
+    var result = [];
 
-    for(var i = 0; i < arr.length; i++){
-      result += String.fromCharCode(arr[i]);
+    for(var i = 0; i < str.length; i++){
+      result.push(str.charCodeAt(i));
     }
 
     return result;
   }
-
 
   /**
    * stringToChar - make a string 16 characters long, fill empty spots with whitespaces
@@ -94,6 +99,11 @@ export default class Command{
    * @return {string}  the commandstring
    */
   getSendString(){
+    console.error("Deprecated call!");
     return this.getCommand() + this.startCommandChar + this.endCommandChar;
+  }
+
+  getSendBytes(){
+    return this.getCommand().concat([this.startByte, this.endByte]);
   }
 }

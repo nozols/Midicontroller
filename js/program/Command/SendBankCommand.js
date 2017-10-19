@@ -7,6 +7,9 @@ export default class SendBankCommand extends Command{
   }
 
   getCommand(){
-    return this.getCommandChar() + this.bank;
+    return [
+      this.getCommandByte(),
+      this.bank
+    ];
   }
 }

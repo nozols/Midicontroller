@@ -8,21 +8,19 @@ export default class StoreBankCommand extends Command{
     this.bpms = bpms;
     this.words = words;
     this.midis = midis;
-    this.midiString = [];
+    this.midiBytes = [];
     for(var i = 0; i < this.midis.length; i++){
-      this.midiString.push(this.byteArrayToString(this.midis[i]));
+      this.midiBytes = this.midiBytes.concat(this.midis[i]);
     }
-    this.midiString = this.midiString.join('');
-    //console.log(this.getCommand(), this.getCommand().length);
-    var temp = [];
-    var t2 = this.getCommand();
-    for(var i = 0 ; i < t2.length; i++){
-      temp.push(t2.charCodeAt(i));
-    }
-    console.log(temp);
   }
 
   getCommand(){
-    return this.getCommandChar() + String.fromCharCode(this.index) + this.name + this.midiString + this.byteArrayToString(this.bpms) + this.byteArrayToString(this.words);
+    return [
+      this.getCommandByte(),
+      this.index
+    ].concat(this.stringToByteArray(this.name))
+    .concat(this.midiBytes)
+    .concat(this.bpms)
+    .concat(this.words);
   }
 }

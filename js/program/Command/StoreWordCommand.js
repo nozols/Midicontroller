@@ -8,6 +8,9 @@ export default class StoreWordCommand extends Command{
   }
 
   getCommand(){
-    return this.getCommandChar() + String.fromCharCode(this.index) + this.value;
+    return [
+      this.getCommandByte(),
+      this.index,
+    ].concat(this.stringToByteArray(this.value));
   }
 }
