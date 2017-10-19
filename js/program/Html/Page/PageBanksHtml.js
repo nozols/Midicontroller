@@ -1,8 +1,8 @@
-import Html from './Html.js'
+import Html from './../Html.js'
 import PageBanksPatchHtml from './PageBanksPatchHtml.js';
-import ShowPopupEvent from './../Events/ShowPopupEvent.js';
-import SendCommandEvent from './../Events/SendCommandEvent';
-import StoreBankCommand from './../Command/StoreBankCommand.js';
+import ShowPopupEvent from './../../Events/ShowPopupEvent.js';
+import SendCommandEvent from './../../Events/SendCommandEvent';
+import StoreBankCommand from './../../Command/StoreBankCommand.js';
 
 export default class PageBanksHtml extends Html{
   constructor(main){

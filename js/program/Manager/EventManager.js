@@ -12,7 +12,6 @@ export default class EventManager{
    * @param  {Event} event      the event
    */
   triggerEvent(event){
-    console.log('trigger event: ', event.type, event);
     for(var i = 0; i < this.events.length; i++){
       if(this.events[i].event == event.type){
         this.events[i].callback(event);

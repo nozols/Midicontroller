@@ -1,8 +1,8 @@
-import Html from './Html.js';
-import TextNode from './TextNode.js';
-import ShowPopupEvent from './../Events/ShowPopupEvent.js';
-import SendCommandEvent from './../Events/SendCommandEvent';
-import StoreWordCommand from './../Command/StoreWordCommand.js';
+import Html from './../Html.js';
+import TextNode from './../TextNode.js';
+import ShowPopupEvent from './../../Events/ShowPopupEvent.js';
+import SendCommandEvent from './../../Events/SendCommandEvent';
+import StoreWordCommand from './../../Command/StoreWordCommand.js';
 
 export default class PageWordsHtml extends Html{
   constructor(main){

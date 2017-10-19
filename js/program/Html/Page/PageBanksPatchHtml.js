@@ -1,5 +1,5 @@
-import Html from './Html.js';
-import TextNode from './TextNode.js';
+import Html from './../Html.js';
+import TextNode from './../TextNode.js';
 
 export default class PageBanksPatchHtml extends Html{
   constructor(element){

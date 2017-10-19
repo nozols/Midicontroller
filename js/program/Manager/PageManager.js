@@ -1,10 +1,10 @@
 import Html from './../Html/Html.js';
 import TextNode from './../Html/TextNode.js';
-import PageControlHtml from './../Html/PageControlHtml.js';
-import PageBanksHtml from './../Html/PageBanksHtml.js';
-import PageWordsHtml from './../Html/PageWordsHtml.js';
+import PageControlHtml from './../Html/Page/PageControlHtml.js';
+import PageBanksHtml from './../Html/Page/PageBanksHtml.js';
+import PageWordsHtml from './../Html/Page/PageWordsHtml.js';
+import PageSettingsHtml from './../Html/Page/PageSettingsHtml.js';
 import ShowPopupEvent from './../Events/ShowPopupEvent.js';
-
 
 /**
  * Handles all the html stuff going on on the pages
@@ -26,7 +26,7 @@ export default class PageManager{
     this.pages.control = new PageControlHtml(main);
     this.pages.banks = new PageBanksHtml(main);
     this.pages.words = new PageWordsHtml(main);
-    this.pages.settings = new Html(document.getElementById('page-settings'));
+    this.pages.settings = new PageSettingsHtml(main);
 
     this.buttons = {};
     this.buttons.control = new Html(document.getElementById('btn-page-control'));

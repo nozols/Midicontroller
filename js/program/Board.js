@@ -71,7 +71,6 @@ export default class Board{
    * @param  {Command} command the command to send
    */
   sendCommand(command){
-    console.log('Outgoing: ', command.command, command.getSendBytes());
     this.connection.write(command.getSendBytes());
   }
 

@@ -1,8 +1,8 @@
-import Html from './Html.js';
-import SendCommandEvent from './../Events/SendCommandEvent.js';
-import BankCommand from './../Command/BankCommand.js';
-import PatchCommand from './../Command/PatchCommand.js';
-import Command from './../Command/Command.js';
+import Html from './../Html.js';
+import SendCommandEvent from './../../Events/SendCommandEvent.js';
+import BankCommand from './../../Command/BankCommand.js';
+import PatchCommand from './../../Command/PatchCommand.js';
+import Command from './../../Command/Command.js';
 
 export default class PageControlHtml extends Html{
   constructor(main){
