@@ -20,7 +20,7 @@
   "author": "Niels de Boer",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^1.4.1",
+    "electron": "^9.1.0",
     "electron-prebuilt-compile": "^1.6.11",
     "electron-rebuild": "^1.4.0"
   },
